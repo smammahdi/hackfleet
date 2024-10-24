@@ -9,6 +9,7 @@ import com.tms.paymentms.payment.PaymentRepository;
 import com.tms.paymentms.payment.PaymentService;
 import com.tms.paymentms.payment.clients.BookingClient;
 import com.tms.paymentms.payment.clients.UserClient;
+import com.tms.paymentms.payment.dto.SeatStatusDTO;
 import com.tms.paymentms.payment.dto.TicketDTO;
 import com.tms.paymentms.payment.external.Booking;
 import com.tms.paymentms.payment.messaging.TicketMessageProducer;
@@ -55,6 +56,12 @@ public class PaymentServiceImpl implements PaymentService {
         } catch (FeignException.BadRequest e) {
             throw new RuntimeException("Insufficient balance");
         }
+        Ticket ticket = ticketRepository.findByBookingId(bookingId).orElse(null);
+        TicketDTO ticketDTO = convertTicketToDTO(ticket);
+        SeatStatusDTO seatStatusDTO = new SeatStatusDTO();
+        seatStatusDTO.setSeatIds(ticketDTO.getSeatId());
+        seatStatusDTO.setStatus("PAID");
+        ticketMessageProducer.sendSeatingMessage(seatStatusDTO);
         return paymentRepository.save(payment);
     }
 
@@ -114,7 +121,10 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.delete(payment);
         ticketRepository.delete(ticket);
         ticketMessageProducer.sendBookingMessage(ticketDTO.getBookingId());
-        ticketMessageProducer.sendSeatingMessage(ticketDTO.getSeatId());
+        SeatStatusDTO seatStatusDTO = new SeatStatusDTO();
+        seatStatusDTO.setSeatIds(ticketDTO.getSeatId());
+        seatStatusDTO.setStatus("AVAILABLE");
+        ticketMessageProducer.sendSeatingMessage(seatStatusDTO);
         return true;
     }
     

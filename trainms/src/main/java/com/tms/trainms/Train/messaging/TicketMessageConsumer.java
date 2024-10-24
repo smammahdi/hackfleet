@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 
+import com.tms.trainms.Train.DTO.SeatStatusDTO;
 import com.tms.trainms.Train.TrainService;
 
 @Service
@@ -18,8 +19,10 @@ public class TicketMessageConsumer
     }
 
     @RabbitListener(queues = "seatStatusQueue")
-    public void receiveMessage(List<Long> seatIds) 
+    public void receiveMessage(SeatStatusDTO seatStatusDTO) 
     {
-        trainService.setSeatStatus(seatIds, "AVAILABLE");
+        String status = seatStatusDTO.getStatus();
+        List<Long> seatIds = seatStatusDTO.getSeatIds();
+        trainService.setSeatStatus(seatIds, status);
     }
 }

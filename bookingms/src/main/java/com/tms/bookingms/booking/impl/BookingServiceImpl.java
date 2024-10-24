@@ -9,13 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tms.bookingms.booking.Booking;
 import com.tms.bookingms.booking.BookingRepository;
 import com.tms.bookingms.booking.BookingService;
-
 import com.tms.bookingms.booking.clients.MailTrapService;
 import com.tms.bookingms.booking.clients.TrainClient;
 import com.tms.bookingms.booking.clients.UserClient;
 import com.tms.bookingms.booking.dto.SeatStatusDTO;
-
-import com.tms.bookingms.booking.external.Seat;
 import com.tms.bookingms.booking.external.User;
 
 @Service
@@ -110,24 +107,6 @@ public class BookingServiceImpl implements BookingService
         return false;
     }
 
-    @Override
-    public boolean deleteBooking(Long bookingId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteBooking'");
-    }
-
-    @Override
-    public boolean confirmBooking(Long userId, Long bookingId, Long otp) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'confirmBooking'");
-    }
-
-    @Override
-    public boolean confirmPayment(Long bookingId) 
-    {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'confirmPayment'");
-    }
 
     @Override
     public void deleteBookingById(Long bookingId) 
