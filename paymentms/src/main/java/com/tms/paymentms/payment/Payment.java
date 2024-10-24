@@ -1,5 +1,7 @@
 package com.tms.paymentms.payment;
 
+import java.util.List;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,7 +13,7 @@ public class Payment
     private Long id;
     private Long bookingId;
     private Long amount;
-    private String[] passengerList;
+    private List<String> passengerList;
 
     public void setId(Long id)
     {
@@ -43,12 +45,12 @@ public class Payment
         return this.amount;
     }
 
-    public void setPassengerList(String[] passengerList)
+    public void setPassengerList(List<String> passengerList)
     {
         this.passengerList = passengerList;
     }
 
-    public String[] getPassengerList()
+    public List<String> getPassengerList()
     {
         return this.passengerList;
     }
