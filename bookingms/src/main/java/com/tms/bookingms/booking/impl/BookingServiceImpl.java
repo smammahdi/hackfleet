@@ -13,7 +13,7 @@ import com.tms.bookingms.booking.clients.MailTrapService;
 import com.tms.bookingms.booking.clients.TrainClient;
 import com.tms.bookingms.booking.clients.UserClient;
 import com.tms.bookingms.booking.dto.SeatStatusDTO;
-import com.tms.bookingms.booking.external.User;
+import com.tms.bookingms.booking.external.UserDTO;
 
 @Service
 public class BookingServiceImpl implements BookingService
@@ -34,10 +34,14 @@ public class BookingServiceImpl implements BookingService
     @Transactional
     public Long addBooking(Long userId, List<Long> seatIds) {
         Booking booking = new Booking();
-        User user = userClient.getUser(userId).getBody();
+        System.out.println("BookingServiceImpl.addBooking() userId: " + userId);
+        // UserDTO user = userClient.getUser(userId).getBody();
+        // System.out.println(userClient.getUser(userId).getBody());
+        UserDTO user = userClient.getUser(userId).getBody();
         if (user == null) {
             throw new RuntimeException("User not found");
         }
+        System.out.println(user.getEmail());
         String email = user.getEmail();
 
         booking.setUserId(userId);
@@ -52,10 +56,12 @@ public class BookingServiceImpl implements BookingService
         } catch (IOException e) {
             throw new RuntimeException("Failed to send OTP email", e);
         }
+        System.out.println(otp);
         SeatStatusDTO seatStatusDTO = new SeatStatusDTO();
         seatStatusDTO.setSeatIds(seatIds);
         seatStatusDTO.setStatus("RESERVED");
         Long amount = trainClient.setSeatStatus(seatStatusDTO).getBody();
+        System.out.println(amount);
         booking.setAmount(amount);
         bookingRepository.save(booking);
         booking.setOtp(otp);

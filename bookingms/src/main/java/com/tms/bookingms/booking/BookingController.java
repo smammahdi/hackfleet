@@ -42,12 +42,8 @@ public class BookingController {
         Long userId = userBookingOTP.getUserId();
         Long bookingId = userBookingOTP.getBookingId();
         Long otp = userBookingOTP.getOtp();
-        try {
-            boolean verified = bookingService.confirmBooking(userId, bookingId, otp);
-            return new ResponseEntity<>(verified, HttpStatus.ACCEPTED);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Booking verification wasn't succesful!", HttpStatus.NOT_FOUND);
-        }
+        boolean verified = bookingService.confirmBooking(userId, bookingId, otp);
+        return new ResponseEntity<>(verified, HttpStatus.ACCEPTED);
     }
 
     @GetMapping("/{id}")

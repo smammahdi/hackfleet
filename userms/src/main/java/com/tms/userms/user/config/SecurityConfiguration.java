@@ -29,9 +29,7 @@ public class SecurityConfiguration
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> 
                 authorize
-                .requestMatchers("/users/register", "/users/login").permitAll()
-                .anyRequest()
-                .authenticated())
+                    .anyRequest().permitAll())
             .sessionManagement(sessionManagement -> sessionManagement
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authenticationProvider(authenticationProvider)

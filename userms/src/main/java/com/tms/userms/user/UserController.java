@@ -48,9 +48,9 @@ public class UserController
     }
     
     @PutMapping("/balance/reduce")
-    public ResponseEntity<String> reduceBalance(@RequestParam Long userId, @RequestParam Long balance) 
+    public ResponseEntity<String> reduceBalance(@RequestParam Long userId, @RequestParam Long amount) 
     {
-        if(userService.reduceBalance(userId, balance))
+        if(userService.reduceBalance(userId, amount))
         {
             return new ResponseEntity<>("Balance updated successfully", HttpStatus.OK);
         }

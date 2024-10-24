@@ -56,12 +56,16 @@ public class PaymentServiceImpl implements PaymentService {
         } catch (FeignException.BadRequest e) {
             throw new RuntimeException("Insufficient balance");
         }
-        Ticket ticket = ticketRepository.findByBookingId(bookingId).orElse(null);
-        TicketDTO ticketDTO = convertTicketToDTO(ticket);
+        List<Long> seatIds = booking.getSeatIds();
         SeatStatusDTO seatStatusDTO = new SeatStatusDTO();
-        seatStatusDTO.setSeatIds(ticketDTO.getSeatId());
+        seatStatusDTO.setSeatIds(seatIds);
         seatStatusDTO.setStatus("PAID");
         ticketMessageProducer.sendSeatingMessage(seatStatusDTO);
+        Ticket ticket = new Ticket();
+        ticket.setUserId(userId);
+        ticket.setBookingId(bookingId);
+        ticket.setPaymentId(paymentRepository.save(payment).getId());
+        ticketRepository.save(ticket);
         return paymentRepository.save(payment);
     }
 
@@ -111,6 +115,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public boolean deleteTicket(Long userId, Long ticketId) 
     {
+        System.out.println(userId + " " + ticketId);
         Ticket ticket = ticketRepository.findById(ticketId).orElse(null);
         if(ticket == null || !ticket.getUserId().equals(userId))
         {
