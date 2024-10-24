@@ -8,7 +8,7 @@ import java.util.List;
 
 import com.tms.bookingms.booking.Booking;
 import com.tms.bookingms.booking.external.Seat;
-import com.tms.bookingms.booking.external.UserDTO;
+import com.tms.bookingms.booking.external.User;
 
 
 
@@ -30,7 +30,7 @@ public class BookingServiceImpl implements BookingService{
             throw new RuntimeException("Seat not available");
         }
         Booking booking = new Booking();
-        UserDTO userDto = getUser(userId);
+        User userDto = getUser(userId);
         String email = userDto.getEmail();
         booking.setUserId(userId);
         booking.setSeatIds(seatIds);
@@ -53,8 +53,8 @@ public class BookingServiceImpl implements BookingService{
         return 0L;
     }
 
-    private UserDTO getUser(Long userId){
-        return new UserDTO();
+    private User getUser(Long userId){
+        return new User();
     }
 
     private void bookSeats(List<Seat> seats) {

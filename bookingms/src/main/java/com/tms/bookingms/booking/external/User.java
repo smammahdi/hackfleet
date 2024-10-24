@@ -1,6 +1,6 @@
 package com.tms.bookingms.booking.external;
 
-public class UserDTO 
+public class User
 {
     private Long id;
     private Long nid;
