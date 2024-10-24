@@ -1,11 +1,13 @@
-package com.tms.userms.user.dto;
+package com.tms.paymentms.payment.dto;
+
+import java.util.List;
 
 public class TicketDTO 
 {
     private Long ticketId;
     private Long userId;
-    private String[] passengerList;
-    private Long[] seatId;
+    private List<String> passengerList;
+    private List<Long> seatId;
     private Long amount;
     private Long bookingId;
     private Long paymentId;
@@ -30,22 +32,22 @@ public class TicketDTO
         this.userId = userId;
     }
 
-    public String[] getPassengerList() 
+    public List<String> getPassengerList() 
     {
         return passengerList;
     }
 
-    public void setPassengerList(String[] passengerList) 
+    public void setPassengerList(List<String> passengerList) 
     {
         this.passengerList = passengerList;
     }
 
-    public Long[] getSeatId() 
+    public List<Long> getSeatId() 
     {
         return seatId;
     }
 
-    public void setSeatId(Long[] seatId) 
+    public void setSeatId(List<Long> seatId) 
     {
         this.seatId = seatId;
     }
@@ -79,6 +81,4 @@ public class TicketDTO
     {
         this.paymentId = paymentId;
     }
-
-    
 }

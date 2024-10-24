@@ -3,15 +3,13 @@ package com.tms.userms.user;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tms.userms.user.dto.UserDTO;
-
-
-
 
 @RestController
 @RequestMapping("/users")
@@ -24,13 +22,13 @@ public class UserController
         this.userService = userService;
     }
 
-    @GetMapping("/info")
-    public ResponseEntity<UserDTO> getUserInfo(@RequestParam Long userId) 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDTO> getUserInfo(@PathVariable Long id) 
     {
         // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         // String email = authentication.getName();
 
-        UserDTO userDTO = userService.getUserDTO(userId);
+        UserDTO userDTO = userService.getUserDTO(id);
 
         if(userDTO == null)
         {

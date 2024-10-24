@@ -123,8 +123,15 @@ public class BookingServiceImpl implements BookingService
     }
 
     @Override
-    public boolean confirmPayment(Long bookingId) {
+    public boolean confirmPayment(Long bookingId) 
+    {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'confirmPayment'");
+    }
+
+    @Override
+    public void deleteBookingById(Long bookingId) 
+    {
+        bookingRepository.deleteById(bookingId);
     }
 }
