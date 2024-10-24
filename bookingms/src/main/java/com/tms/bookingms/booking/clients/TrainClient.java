@@ -9,6 +9,6 @@ import com.tms.bookingms.booking.dto.SeatStatusDTO;
 
 @FeignClient(name = "trainms",url="${train-service.url}")
 public interface TrainClient {
-    @PutMapping("/train/setStatus")
+    @PutMapping("/trains/setStatus")
     public ResponseEntity<Long> setSeatStatus(@RequestBody SeatStatusDTO seatStatusDTO);
 }
