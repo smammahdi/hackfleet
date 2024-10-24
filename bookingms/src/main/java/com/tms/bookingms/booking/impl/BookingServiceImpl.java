@@ -8,6 +8,9 @@ import java.util.List;
 
 import com.tms.bookingms.booking.Booking;
 import com.tms.bookingms.booking.external.Seat;
+import com.tms.bookingms.booking.external.UserDTO;
+
+
 
 @Service
 public class BookingServiceImpl implements BookingService{
@@ -27,10 +30,16 @@ public class BookingServiceImpl implements BookingService{
             throw new RuntimeException("Seat not available");
         }
         Booking booking = new Booking();
+        UserDTO userDto = getUser(userId);
+        String email = userDto.getEmail();
         booking.setUserId(userId);
         booking.setSeatIds(seatIds);
         booking.setVerified(false);
-        Long otp = getOTP(String email);
+        Long otp = getOTP(email);
+        booking.setOtp(otp);
+        bookSeats(seats);
+        bookingRepository.save(booking);
+        return booking.getId();
     }
 
     private List<Seat> getSeats(List<Long> seatIds) {
@@ -41,7 +50,16 @@ public class BookingServiceImpl implements BookingService{
     private Long getOTP(String email) {
         // generate OTP
         // we will generate an otp and send it to user email
+        return 0L;
     }
-    
 
+    private UserDTO getUser(Long userId){
+        return new UserDTO();
+    }
+
+    private void bookSeats(List<Seat> seats) {
+        // set seat status to booked
+    }
+
+    
 }
