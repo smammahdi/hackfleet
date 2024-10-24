@@ -13,8 +13,8 @@ import com.tms.bookingms.booking.external.User;
 
 
 @Service
-public class BookingServiceImpl implements BookingService{
-
+public class BookingServiceImpl implements BookingService
+{
     private final BookingRepository bookingRepository;
 
     public BookingServiceImpl(BookingRepository bookingRepository) {
@@ -42,7 +42,8 @@ public class BookingServiceImpl implements BookingService{
         return booking.getId();
     }
 
-    private List<Seat> getSeats(List<Long> seatIds) {
+    private List<Seat> getSeats(List<Long> seatIds) 
+    {
         // call seat service to get seat details
         return null;
     }
@@ -61,5 +62,9 @@ public class BookingServiceImpl implements BookingService{
         // set seat status to booked
     }
 
-    
+    @Override
+    public Booking getBookingById(Long bookingId) 
+    {
+        return bookingRepository.findById(bookingId).orElse(null);
+    }
 }

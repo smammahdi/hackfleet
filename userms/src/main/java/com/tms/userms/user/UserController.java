@@ -2,13 +2,15 @@ package com.tms.userms.user;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tms.userms.user.dto.UserDTO;
+
+
 
 
 @RestController
@@ -23,11 +25,12 @@ public class UserController
     }
 
     @GetMapping("/info")
-    public ResponseEntity<UserDTO> getUserInfo() 
+    public ResponseEntity<UserDTO> getUserInfo(@RequestParam Long userId) 
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        UserDTO userDTO = userService.getUserDTO(email);
+        // Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // String email = authentication.getName();
+
+        UserDTO userDTO = userService.getUserDTO(userId);
 
         if(userDTO == null)
         {
@@ -36,5 +39,23 @@ public class UserController
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
     
+    @PutMapping("/balance/add")
+    public ResponseEntity<String> addBalance(@RequestParam Long userId, @RequestParam Long balance) 
+    {
+        if(userService.addBalance(userId, balance))
+        {
+            return new ResponseEntity<>("Balance updated successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Failed to update balance", HttpStatus.BAD_REQUEST);
+    }
     
+    @PutMapping("/balance/reduce")
+    public ResponseEntity<String> reduceBalance(@RequestParam Long userId, @RequestParam Long balance) 
+    {
+        if(userService.reduceBalance(userId, balance))
+        {
+            return new ResponseEntity<>("Balance updated successfully", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Failed to update balance", HttpStatus.BAD_REQUEST);
+    }
 }

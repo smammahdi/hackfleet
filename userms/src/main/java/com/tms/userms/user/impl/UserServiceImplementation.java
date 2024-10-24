@@ -19,9 +19,9 @@ public class UserServiceImplementation implements UserService
     }
 
     @Override
-    public UserDTO getUserDTO(String email) 
+    public UserDTO getUserDTO(Long userId) 
     {
-        User user = userRepository.findByEmail(email).orElse(null);
+        User user = userRepository.findById(userId).orElse(null);
         if(user == null)
         {
             return null;
@@ -30,4 +30,29 @@ public class UserServiceImplementation implements UserService
         return userDTO;
     }
 
+    @Override
+    public boolean addBalance(Long userId, Long balance) 
+    {
+        User user = userRepository.findById(userId).orElse(null);
+        if(user == null)
+        {
+            return false;
+        }
+        user.setMoney(user.getMoney() + balance);
+        userRepository.save(user);
+        return true;
+    }
+
+    @Override
+    public boolean reduceBalance(Long userId, Long balance) 
+    {
+        User user = userRepository.findById(userId).orElse(null);
+        if(user == null || user.getMoney() < balance)
+        {
+            return false;
+        }
+        user.setMoney(user.getMoney() - balance);
+        userRepository.save(user);
+        return true;
+    }
 }
