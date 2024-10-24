@@ -2,18 +2,18 @@ package com.tms.userms.user.dto;
 
 public class UserDTO 
 {
-    private Long userId;
+    private Long id;
     private Long nid;
     private String name;
     private String email;
     private Long money;
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return this.id;
     }
 
     public void setNid(Long nid) {
@@ -21,7 +21,7 @@ public class UserDTO
     }
 
     public Long getNid() {
-        return nid;
+        return this.nid;
     }
 
     public void setName(String name) {
@@ -29,7 +29,7 @@ public class UserDTO
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setEmail(String email) {
@@ -37,7 +37,7 @@ public class UserDTO
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setMoney(Long money) {
@@ -45,6 +45,6 @@ public class UserDTO
     }
 
     public Long getMoney() {
-        return money;
+        return this.money;
     }
 }
