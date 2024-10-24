@@ -1,9 +1,9 @@
 package com.tms.paymentms.payment.messaging;
 
-import java.util.List;
-
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
+
+import com.tms.paymentms.payment.dto.SeatStatusDTO;
 
 @Service
 public class TicketMessageProducer 
@@ -20,8 +20,8 @@ public class TicketMessageProducer
         rabbitTemplate.convertAndSend("bookingQueue", bookingId);
     }
 
-    public void sendSeatingMessage(List<Long> seatIds) 
+    public void sendSeatingMessage(SeatStatusDTO seatStatusDTO) 
     {
-        rabbitTemplate.convertAndSend("seatStatusQueue", seatIds);
+        rabbitTemplate.convertAndSend("seatStatusQueue", seatStatusDTO);
     }
 }
