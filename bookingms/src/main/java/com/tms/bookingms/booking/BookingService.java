@@ -8,4 +8,5 @@ public interface BookingService {
     boolean confirmBooking (Long userId, Long bookingId, Long otp);
     boolean confirmPayment (Long bookingId);
     Booking getBookingById (Long bookingId);
+    void deleteBookingById (Long bookingId);
 }

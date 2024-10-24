@@ -1,20 +1,22 @@
 package com.tms.trainms.Train.TrainServiceImpl;
 
-import com.tms.trainms.Train.DTO.TrainRequest;
-import com.tms.trainms.Train.DTO.TrainWithSeatsDTO;
-import com.tms.trainms.Train.Seat;
-import com.tms.trainms.Train.SeatRepository;
-import com.tms.trainms.Train.Train;
-import com.tms.trainms.Train.TrainRepository;
-import com.tms.trainms.Train.TrainService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.tms.trainms.Train.DTO.TrainRequest;
+import com.tms.trainms.Train.DTO.TrainWithSeatsDTO;
+import com.tms.trainms.Train.Seat;
+import com.tms.trainms.Train.SeatRepository;
+import com.tms.trainms.Train.Status;
+import com.tms.trainms.Train.Train;
+import com.tms.trainms.Train.TrainRepository;
+import com.tms.trainms.Train.TrainService;
 
 @Service
 public class TrainServiceImpl implements TrainService {
@@ -76,5 +78,37 @@ public class TrainServiceImpl implements TrainService {
                 train.getDepartureTime(),
                 train.getSeats()
         )).collect(Collectors.toList());
+    }
+
+    @Override
+    public Long getTotalCost(List<Long> seatIds, String status)
+    {
+        List<Seat> seats = seatRepository.findAllById(seatIds);
+        Long totalCost = 0L;
+        for (Seat seat : seats) 
+        {
+            if(seat.getStatus() == Status.AVAILABLE)
+            {
+                totalCost += seat.getFare();
+                seat.setStatus(Status.valueOf(status));
+            }
+            else
+            {
+                throw new RuntimeException("Seat is not available");
+            }
+        }
+        seatRepository.saveAll(seats);
+        return totalCost;
+    }
+
+    @Override
+    public void setSeatStatus(List<Long> seatIds, String status)
+    {
+        List<Seat> seats = seatRepository.findAllById(seatIds);
+        for (Seat seat : seats) 
+        {
+            seat.setStatus(Status.valueOf(status));
+            seatRepository.save(seat);
+        }
     }
 }

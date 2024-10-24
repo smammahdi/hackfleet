@@ -1,7 +1,6 @@
 package com.tms.trainms.Train;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,8 +16,8 @@ public class Seat {
     private Long id;
 
     private String seatClass;  // Class of the seat (e.g., Economy, Business)
-    private double fare;       // Fare of the seat
-    private String status;      // Status of the seat (e.g., available, reserved)
+    private Long fare;       // Fare of the seat
+    private Status status;      // Status of the seat (e.g., available, reserved)
 
     // Many-to-One relationship with Train
     @ManyToOne
@@ -44,19 +43,19 @@ public class Seat {
         this.seatClass = seatClass;
     }
 
-    public double getFare() {
+    public Long getFare() {
         return fare;
     }
 
-    public void setFare(double fare) {
+    public void setFare(Long fare) {
         this.fare = fare;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

@@ -1,15 +1,24 @@
 package com.tms.trainms.Train;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.tms.trainms.Train.DTO.SeatStatusDTO;
 import com.tms.trainms.Train.DTO.TrainRequest;
 import com.tms.trainms.Train.DTO.TrainRequestQuery;
 import com.tms.trainms.Train.DTO.TrainWithSeatsDTO;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("/trains")
@@ -43,10 +52,23 @@ public class TrainController {
         return ResponseEntity.ok(addedTrain);
     }
 
-
     @GetMapping("/with-seats")
     public ResponseEntity<List<TrainWithSeatsDTO>> getAllTrainsWithSeats() {
         List<TrainWithSeatsDTO> trainsWithSeats = trainService.getAllTrainsWithSeats();
         return ResponseEntity.ok(trainsWithSeats);
+    }
+
+    @GetMapping("/setStatus")
+    public ResponseEntity<Long> getTotalCost(@RequestBody SeatStatusDTO trainSeatDTO)
+    {
+        try
+        {
+            Long totalCost = trainService.getTotalCost(trainSeatDTO.getSeatIds(), trainSeatDTO.getStatus());
+            return new ResponseEntity<>(totalCost, HttpStatus.OK);
+        }
+        catch(Exception e)
+        {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
