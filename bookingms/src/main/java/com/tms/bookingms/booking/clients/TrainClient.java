@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tms.bookingms.booking.dto.SeatStatusDTO;
 
-@FeignClient(name="trainms", url="${train-service.url}")
+@FeignClient(name = "trainms",url="${train-service.url}")
 public interface TrainClient {
     @PutMapping("/train/setStatus")
     public ResponseEntity<Long> setSeatStatus(@RequestBody SeatStatusDTO seatStatusDTO);
 }
-
-
-
-
