@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-UsermsApplication<userms>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tms.userms.UsermsApplication",
+            "projectName": "userms",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
