@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+      - name: pgadmin
+        image: dpage/pgadmin4
+        ports:
+          - containerPort: 80
+        resources:
+          requests:
+            memory: "256Mi"  # Minimum memory requested
+            cpu: "250m"      # Minimum CPU requested
+          limits:
+            memory: "512Mi"  # Maximum memory limit
+            cpu: "1"         # Maximum CPU limit
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          valueFrom:
+            configMapKeyRef:
+              name: pgadmin-configmap
+              key: PGADMIN_DEFAULT_EMAIL
+        - name: PGADMIN_DEFAULT_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: pgadmin-configmap
+              key: PGADMIN_DEFAULT_PASSWORD
+        - name: PGADMIN_CONNECTIONS
+          value: "postgres-service:5432" 
