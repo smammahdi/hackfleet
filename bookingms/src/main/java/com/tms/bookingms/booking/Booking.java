@@ -18,7 +18,6 @@ public class Booking {
     private boolean verified;
     private Long amount;
 
-
     public Long getId() {
         return id;
     }
@@ -51,16 +50,17 @@ public class Booking {
         this.otp = otp;
     }
 
-    public boolean isVerified() {
-        return verified;
+    public boolean getVerified() {
+        return this.verified;
     }
 
     public void setVerified(boolean verified) {
         this.verified = verified;
     }
 
+
     public Long getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public void setAmount(Long amount) {
