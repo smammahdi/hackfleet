@@ -1,16 +1,15 @@
 package com.tms.bookingms.booking.impl;
 
-import com.tms.bookingms.booking.BookingRepository;
-import com.tms.bookingms.booking.BookingService;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.tms.bookingms.booking.Booking;
+import com.tms.bookingms.booking.BookingRepository;
+import com.tms.bookingms.booking.BookingService;
 import com.tms.bookingms.booking.external.Seat;
 import com.tms.bookingms.booking.external.User;
-
-
 
 @Service
 public class BookingServiceImpl implements BookingService
@@ -66,5 +65,23 @@ public class BookingServiceImpl implements BookingService
     public Booking getBookingById(Long bookingId) 
     {
         return bookingRepository.findById(bookingId).orElse(null);
+    }
+
+    @Override
+    public boolean deleteBooking(Long bookingId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteBooking'");
+    }
+
+    @Override
+    public boolean confirmBooking(Long userId, Long bookingId, Long otp) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'confirmBooking'");
+    }
+
+    @Override
+    public boolean confirmPayment(Long bookingId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'confirmPayment'");
     }
 }

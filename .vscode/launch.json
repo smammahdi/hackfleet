@@ -8,6 +8,28 @@
             "mainClass": "com.tms.userms.UsermsApplication",
             "projectName": "userms",
             "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=64717 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=userms"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-BookingmsApplication<bookingms>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tms.bookingms.BookingmsApplication",
+            "projectName": "bookingms",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=49857 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=bookingms"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-PaymentmsApplication<paymentms>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.tms.paymentms.PaymentmsApplication",
+            "projectName": "paymentms",
+            "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
     ]
