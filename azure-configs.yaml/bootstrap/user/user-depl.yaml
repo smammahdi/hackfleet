@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+  labels:
+    app: user
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: user
+  template:
+    metadata:
+      labels:
+        app: user
+    spec:
+      containers:
+      - name: user
+        image: ahnaftahmid04/users:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8081
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: docker
+      restartPolicy: Always

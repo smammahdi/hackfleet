@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,7 +52,7 @@ public class PaymentController
     }
     
     @GetMapping("/ticket/{ticketId}")
-    public ResponseEntity<TicketDTO> getTicketByUserById(@RequestBody UserDTO userdto, Long ticketId)
+    public ResponseEntity<TicketDTO> getTicketByUserById(@RequestBody UserDTO userdto, @PathVariable Long ticketId)
     {
         TicketDTO ticket = paymentService.getTicketByUserById(userdto.getUserId(), ticketId);
         if(ticket == null)
@@ -65,12 +66,12 @@ public class PaymentController
     }
 
     @DeleteMapping("/ticket/{ticketId}")
-    public ResponseEntity<?> deleteTicket(@RequestBody UserDTO userdto, Long ticketId)
+    public ResponseEntity<?> deleteTicket(@RequestBody UserDTO userdto,@PathVariable Long ticketId)
     {
         boolean isDeleted = paymentService.deleteTicket(userdto.getUserId(), ticketId);
         if(isDeleted)
         {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>("Ticket deletion was succesful",HttpStatus.OK);
         }
         else
         {

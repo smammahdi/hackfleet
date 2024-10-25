@@ -1,0 +1,35 @@
+name: Build and Test userms
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - 'userms/**'
+  pull_request:
+    branches:
+      - "main"
+    paths:
+      - 'userms/**'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    # Set up JDK 21
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+        cache: maven
+
+    # Build and test userms
+    - name: Build and Test userms
+      run: |
+        cd userms
+        mvn -B package --file pom.xml

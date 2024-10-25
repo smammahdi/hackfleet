@@ -1,0 +1,43 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx  # Ensure this matches your ingress class
+  rules:
+  - http:
+      paths:
+      # Route for user service
+      - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: user
+            port:
+              number: 8081
+      # Route for payment service
+      - path: /payment
+        pathType: Prefix
+        backend:
+          service:
+            name: payment
+            port:
+              number: 8084
+      # Route for train service
+      - path: /trains
+        pathType: Prefix
+        backend:
+          service:
+            name: train
+            port:
+              number: 8082
+      # Route for booking service
+      - path: /booking
+        pathType: Prefix
+        backend:
+          service:
+            name: booking
+            port:
+              number: 8083

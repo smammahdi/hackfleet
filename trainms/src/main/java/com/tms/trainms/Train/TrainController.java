@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class TrainController {
     private TrainService trainService;
 
     // API to get all trains based on From, To, and Date
-    @PostMapping
+    @GetMapping
     public ResponseEntity<List<Train>> getTrains(@RequestBody TrainRequestQuery request) {
         List<Train> trains = trainService.getTrains(request.getFromPlace(), request.getToPlace(), request.getDepartureDate());
         return ResponseEntity.ok(trains);
@@ -47,8 +48,8 @@ public class TrainController {
 
     // API to add a new train with associated seats
     @PostMapping("/add")
-    public ResponseEntity<Train> addTrain(@RequestBody TrainRequest trainRequest) {
-        Train addedTrain = trainService.addTrainWithSeats(trainRequest);
+    public ResponseEntity<List<Train>> addTrain(@RequestBody List<TrainRequest> trainRequest) {
+        List<Train> addedTrain = trainService.addTrainWithSeats(trainRequest);
         return ResponseEntity.ok(addedTrain);
     }
 
@@ -58,12 +59,14 @@ public class TrainController {
         return ResponseEntity.ok(trainsWithSeats);
     }
 
-    @GetMapping("/setStatus")
-    public ResponseEntity<Long> getTotalCost(@RequestBody SeatStatusDTO trainSeatDTO)
+    @PutMapping("/setStatus")
+    public ResponseEntity<Long> getTotalCost(@RequestBody SeatStatusDTO seatStatusDTO)
     {
+        System.out.println(seatStatusDTO.getSeatIds());
+        System.out.println(seatStatusDTO.getStatus());
         try
         {
-            Long totalCost = trainService.getTotalCost(trainSeatDTO.getSeatIds(), trainSeatDTO.getStatus());
+            Long totalCost = trainService.getTotalCost(seatStatusDTO.getSeatIds(), seatStatusDTO.getStatus());
             return new ResponseEntity<>(totalCost, HttpStatus.OK);
         }
         catch(Exception e)

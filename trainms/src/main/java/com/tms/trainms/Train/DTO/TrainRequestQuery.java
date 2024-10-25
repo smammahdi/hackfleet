@@ -9,7 +9,6 @@ public class TrainRequestQuery {
     private String fromPlace;
     private String toPlace;
     private LocalDate departureDate;
-    private List<Seat> seats;
 
     // Getters and Setters
    
@@ -40,13 +39,4 @@ public class TrainRequestQuery {
     public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
-
-    public List<Seat> getSeats() {
-        return seats;
-    }
-
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
-    }
-
 }
