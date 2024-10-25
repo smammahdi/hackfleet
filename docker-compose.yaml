@@ -18,7 +18,7 @@ services:
 
 
   trainms:
-    image: ahnaftahmid04/train:latest 
+    image: smamm/train:latest 
     container_name: train
     ports:
       - 8082:8082
@@ -31,7 +31,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   userms:
-    image: ahnaftahmid04/users:latest 
+    image: smamm/users:latest 
     container_name: user
     ports:
       - 8081:8081
@@ -44,7 +44,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     
   bookingms:
-    image: ahnaftahmid04/booking:latest 
+    image: smamm/booking:latest 
     container_name: booking
     ports:
       - 8083:8083
@@ -58,7 +58,7 @@ services:
 
 
   paymentms:
-    image: ahnaftahmid04/payment:latest 
+    image: smamm/payment:latest 
     container_name: payment
     ports:
       - 8084:8084
@@ -71,7 +71,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
 
   client:
-    image: raihanrsd02/my-react-app:latest
+    image: smamm/my-react-app:latest
     container_name: client
     ports:
       - 3000:3000
@@ -82,7 +82,6 @@ services:
       - paymentms
     networks:
       - microservice-network
-
 
 networks:
   microservice-network:
