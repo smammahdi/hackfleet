@@ -1,0 +1,61 @@
+/* src/components/TicketPage.css */
+
+/* Container for the entire page (sidebar + content) */
+.ticket-page-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  /* The main content area for tickets, next to the sidebar */
+  .ticket-content {
+    margin-left: 200px; /* This should match the width of the sidebar */
+    padding: 40px;
+    width: 100%; /* Take the remaining width */
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  h1 {
+    margin-bottom: 40px;
+    font-size: 36px;
+    color: #333;
+  }
+  
+  .ticket-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .ticket-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 300px;
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .ticket-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .ticket-card h3 {
+    margin-bottom: 10px;
+    color: #007bff;
+  }
+  
+  .ticket-card p {
+    margin-bottom: 8px;
+    color: #555;
+  }
+  
+  .ticket-card strong {
+    color: #333;
+  }
+  
