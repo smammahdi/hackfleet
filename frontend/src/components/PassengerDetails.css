@@ -1,0 +1,79 @@
+/* src/components/PassengerDetails.css */
+.passenger-details-page {
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .warnings {
+    background-color: #f9d371;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .warnings p {
+    margin: 0.5rem 0;
+  }
+  
+  .timer {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .timer h3 {
+    font-size: 2rem;
+    color: #e67e22;
+  }
+  
+  .passenger-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .passenger-input {
+    margin-bottom: 1rem;
+  }
+  
+  .passenger-input input,
+  .passenger-input select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-info {
+    margin-top: 2rem;
+  }
+  
+  .contact-info input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f5f5f5;
+  }
+  
+  .proceed-btn {
+    padding: 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .proceed-btn:hover {
+    background-color: #218838;
+  }
+  

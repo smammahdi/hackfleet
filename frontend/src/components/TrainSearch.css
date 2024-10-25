@@ -1,0 +1,91 @@
+/* src/components/TrainSearch.css */
+
+.train-search-container {
+  display: flex;
+}
+
+.train-results-page {
+  margin-left: 200px; /* To accommodate the sidebar */
+  padding: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modify-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modify-btn:hover {
+  background-color: #0056b3;
+}
+
+.train-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.train-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.train-card h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.train-details {
+  margin-bottom: 20px;
+  color: #555;
+}
+
+.seat-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seat-card {
+  background-color: #f8f9fa;
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  width: 150px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.seat-card h4 {
+  margin-bottom: 10px;
+}
+
+.book-btn {
+  padding: 8px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.book-btn:hover {
+  background-color: #218838;
+}
