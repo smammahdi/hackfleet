@@ -661,3 +661,7 @@ Retrieve the details of a booking using its booking ID.
 
 ---
 
+# Monitoring with Grafana:
+![image](https://github.com/user-attachments/assets/3cff4b9c-68c2-4071-a598-042d6ac62851)
+
+
