@@ -1,5 +1,3 @@
-Here is the `README.md` file for the User Microservice API documentation:
-
 # User Microservice API
 
 This is the API documentation for the **User Microservice**. This service allows users to register, log in, retrieve user details, and manage user account balances. The API uses JWT-based authentication for secure access to certain endpoints.
