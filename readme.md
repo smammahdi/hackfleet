@@ -20,7 +20,7 @@ This is the API documentation for the **User Microservice**. This service allows
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-repository/user-microservice.git
+    git clone https://github.com/smammahdi/hackfleet.git
     ```
 
 2. Navigate to the project directory:
