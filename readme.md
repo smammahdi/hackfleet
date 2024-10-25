@@ -43,7 +43,7 @@ This is the API documentation for the **User Microservice**. This service allows
     mvn spring-boot:run
     ```
 
-The application should now be running locally on `http://localhost:8080`.
+The application should now be running locally on `http://20.115.178.62`.
 
 
 ## API Endpoints
