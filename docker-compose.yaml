@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: postgres_container
+    container_name: postgres
     image: postgres
     environment:
       POSTGRES_USER: lms
@@ -15,7 +15,7 @@ services:
     restart: unless-stopped
 
   pgadmin:
-    container_name: pgadmin_container
+    container_name: pgadmin
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin4.org}
@@ -30,7 +30,7 @@ services:
     restart: unless-stopped
 
   zipkin:
-    container_name: zipkin_container
+    container_name: zipkin
     image: openzipkin/zipkin
     ports:
       - 9411:9411
@@ -38,7 +38,7 @@ services:
       - my_network
       
   rabbitmq:
-    container_name: rabbitmq_container
+    container_name: rabbitmq
     image: rabbitmq:3-management
     ports:
       - 5672:5672
